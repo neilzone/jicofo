@@ -87,14 +87,14 @@ from anonymous domain. Here's what has to be configured:
 
 1 In Prosody:
 
- a) Enable authentication on your main domain:<br/>
+ a) Enable authentication on your main domain.<br/>
  ```
  VirtualHost "jitsi-meet.example.com"
      authentication = "internal_plain"
  ```
  b) Add new virtual host with anonymous login method for guests:<br/>
  ```
- VirtualHost guest.jitsi-meet.example.com
+ VirtualHost "guest.jitsi-meet.example.com"
      authentication = "anonymous"
  ```
 2 In Jitsi Meet config.js configure 'anonymousdomain':<br/>
@@ -120,6 +120,13 @@ If you have Jicofo installed from the Debian package this should go directly to
 ```
 org.jitsi.jicofo.auth.URL=XMPP:jitsi-meet.example.com
 ```
+
+If you have not already done so, create a user:
+```
+prosodyctl adduser username@jitsi-meet.example.com
+```
+
+You will be prompted to enter your chosen password, and then again to confirm it.
 
 ## Certificates
 Jicofo uses an XMPP user connection (on port 5222 by default), and since the
